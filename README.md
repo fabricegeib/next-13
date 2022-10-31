@@ -18,6 +18,22 @@ You can start editing the page by modifying `pages/index.js`. The page auto-upda
 
 The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
+## Documentation
+
+### Pages
+
+**Static Generation (Recommended)** : The HTML is generated at build time and will be reused on each request. To make a page use Static Generation, either export the page component, or export getStaticProps (and getStaticPaths if necessary). It's great for pages that can be pre-rendered ahead of a user's request. You can also use it with Client-side Rendering to bring in additional data.
+
+**Server-side Rendering** : The HTML is generated on each request. To make a page use Server-side Rendering, export getServerSideProps. Because Server-side Rendering results in slower performance than Static Generation, use this only if absolutely necessary.
+
+We have create some example pages :
+
+- `about.js`
+- `blog.js`
+- `blog-ssr.js`
+- `sitemap.js`
+- `posts/[id].js`
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:
