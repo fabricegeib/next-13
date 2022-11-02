@@ -8,7 +8,7 @@ function Wordpress({ posts }) {
 			<h1>Wordpress</h1>
 			<div className={styles.posts}>
 				{posts.map((post) => (
-					<div className={styles.post}>
+					<div className={styles.post} key={post.id}>
 						<h2>
 							<a href={post.link}>{post.title.rendered}</a>
 						</h2>
