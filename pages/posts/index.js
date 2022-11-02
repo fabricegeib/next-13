@@ -1,9 +1,9 @@
 // TODO: Need to fetch `posts` (by calling some API endpoint)
 //       before this page can be pre-rendered.
-export default function Blog({ posts }) {
+export default function Posts({ posts }) {
 	return (
 		<div>
-			<h1>Blog - getStaticProps</h1>
+			<h1>Posts</h1>
 			<ul>
 				{posts.map((post) => (
 					<li key={post.id}>
@@ -26,6 +26,8 @@ export async function getStaticProps() {
 	const posts = await res.json();
 
 	// console.log(posts);
+	console.log('pages/posts = ', posts);
+
 
 	// By returning { props: { posts } }, the Blog component
 	// will receive `posts` as a prop at build time

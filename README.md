@@ -22,9 +22,9 @@ The `pages/api` directory is mapped to `/api/*`. Files in this directory are tre
 
 ### Pages
 
-**Static Generation (Recommended)** : The HTML is generated at build time and will be reused on each request. To make a page use Static Generation, either export the page component, or export getStaticProps (and getStaticPaths if necessary). It's great for pages that can be pre-rendered ahead of a user's request. You can also use it with Client-side Rendering to bring in additional data.
+**Static Generation (Recommended)** : The HTML is generated at build time and will be reused on each request. To make a page use Static Generation, either export the page component, or export `getStaticProps` (and `getStaticPaths` if necessary). It's great for pages that can be pre-rendered ahead of a user's request. You can also use it with Client-side Rendering to bring in additional data.
 
-**Server-side Rendering** : The HTML is generated on each request. To make a page use Server-side Rendering, export getServerSideProps. Because Server-side Rendering results in slower performance than Static Generation, use this only if absolutely necessary.
+**Server-side Rendering** : The HTML is generated on each request. To make a page use Server-side Rendering, export `getServerSideProps`. Because Server-side Rendering results in slower performance than Static Generation, use this only if absolutely necessary.
 
 We have create some example pages :
 
@@ -36,15 +36,59 @@ We have create some example pages :
 
 ### Data fetching
 
-**getServerSideProps**
+**getServerSideProps (SSR)**
 
-You should use getServerSideProps only if you need to render a page whose data must be fetched at request time. This could be due to the nature of the data or properties of the request (such as authorization headers or geo location). Pages using getServerSideProps will be server side rendered at request time and only be cached if cache-control headers are configured.
+You should use `getServerSideProps` only if you need to render a page whose data must be fetched at request time. This could be due to the nature of the data or properties of the request (such as authorization headers or geo location). Pages using getServerSideProps will be server side rendered at request time and only be cached if cache-control headers are configured.
 
 This approach works well for user dashboard pages, for example. Because a dashboard is a private, user-specific page, SEO is not relevant and the page doesn’t need to be pre-rendered. The data is frequently updated, which requires request-time data fetching.
 
-**getStaticProps**
+`getServerSideProps` can only be exported from a page
 
+If you do not need to render the data during the request, then you should consider fetching data on the client side or `getStaticProps`.
 
+You can use caching headers (Cache-Control) inside getServerSideProps to cache dynamic responses. For example, using stale-while-revalidate.
+
+```javascript
+// This value is considered fresh for ten seconds (s-maxage=10).
+// If a request is repeated within the next 10 seconds, the previously
+// cached value will still be fresh. If the request is repeated before 59 seconds,
+// the cached value will be stale but still render (stale-while-revalidate=59).
+//
+// In the background, a revalidation request will be made to populate the cache
+// with a fresh value. If you refresh the page, you will see the new value.
+export async function getServerSideProps({ req, res }) {
+  res.setHeader(
+    'Cache-Control',
+    'public, s-maxage=10, stale-while-revalidate=59'
+  )
+
+  return {
+    props: {},
+  }
+}
+```
+
+**getStaticPaths**
+
+If a page has Dynamic Routes and uses `getStaticProps`, it needs to define a list of paths to be statically generated.
+
+You should use getStaticPaths if you’re statically pre-rendering pages that use dynamic routes and:
+
+- The data comes from a headless CMS
+- The data comes from a database
+- The data comes from the filesystem
+- The data can be publicly cached (not user-specific)
+- The page must be pre-rendered (for SEO) and be very fast — getStaticProps generates HTML and JSON files, both of which can be cached by a CDN for performance
+
+- getStaticPaths must be used with getStaticProps
+- You cannot use getStaticPaths with getServerSideProps
+- You can export getStaticPaths from a Dynamic Route that also uses getStaticProps
+- You cannot export getStaticPaths from non-page file (e.g. your components folder)
+- You must export getStaticPaths as a standalone function, and not a property of the page component
+
+**getStaticProps (SSG)**
+
+If you export a function called getStaticProps (Static Site Generation) from a page, Next.js will pre-render this page at build time using the props returned by getStaticProps
 
 ## Learn More
 
