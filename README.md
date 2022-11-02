@@ -97,6 +97,29 @@ You should use getStaticProps if:
 - The page must be pre-rendered (for SEO) and be very fast — getStaticProps generates HTML and JSON files, both of which can be cached by a CDN for performance
 - The data can be publicly cached (not user-specific). This condition can be bypassed in certain specific situation by using a Middleware to rewrite the path.
 
+## Github workflow
+
+```
+warn  - Invalid next.config.js options detected: 
+  - The value at .experimental has an unexpected property, images, which is not in the list of allowed properties (adjustFontFallbacks, adjustFontFallbacksWithSizeAdjust, amp, cpus, craCompat, disableOptimizedLoading, disablePostcssPresetEnv, esmExternals, appDir, allowMiddlewareResponseBody, externalDir, fallbackNodePolyfills, forceSwcTransforms, fullySpecified, gzipSize, incrementalCacheHandlerPath, isrFlushToDisk, isrMemoryCacheSize, largePageDataBytes, legacyBrowsers, manualClientBasePath, modularizeImports, newNextLinkBehavior, nextScriptWorkers, optimizeCss, optimisticClientCache, outputFileTracingRoot, pageEnv, profiling, proxyTimeout, runtime, serverComponentsExternalPackages, transpilePackages, scrollRestoration, sharedPool, skipMiddlewareUrlNormalize, skipTrailingSlashRedirect, sri, swcFileReading, swcMinify, swcMinifyDebugOptions, swcPlugins, swcTraceProfiling, urlImports, enableUndici, workerThreads, fontLoaders, webVitalsAttribution, turbotrace).
+
+See more info here: https://nextjs.org/docs/messages/invalid-next-config
+warn  - You have enabled experimental feature (images) in next.config.js.
+warn  - Experimental features are not covered by semver, and may cause unexpected or broken application behavior. Use at your own risk.
+
+info  - using build directory: /home/runner/work/next-13/next-13/.next
+info  - Copying "static build" directory
+info  - No "exportPathMap" found in "/home/runner/work/next-13/next-13/next.config.js". Generating map from "./pages"
+Error: Image Optimization using Next.js' default loader is not compatible with `next export`.
+  Possible solutions:
+    - Use `next start` to run a server, which includes the Image Optimization API.
+    - Configure `images.unoptimized = true` in `next.config.js` to disable the Image Optimization API.
+  Read more: https://nextjs.org/docs/messages/export-image-api
+    at /home/runner/work/next-13/next-13/node_modules/next/dist/export/index.js:149:23
+    at async Span.traceAsyncFn (/home/runner/work/next-13/next-13/node_modules/next/dist/trace/trace.js:79:20)
+Error: Process completed with exit code 1.
+```
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:
