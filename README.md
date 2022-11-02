@@ -34,6 +34,18 @@ We have create some example pages :
 - `sitemap.js`
 - `posts/[id].js`
 
+### Data fetching
+
+**getServerSideProps**
+
+You should use getServerSideProps only if you need to render a page whose data must be fetched at request time. This could be due to the nature of the data or properties of the request (such as authorization headers or geo location). Pages using getServerSideProps will be server side rendered at request time and only be cached if cache-control headers are configured.
+
+This approach works well for user dashboard pages, for example. Because a dashboard is a private, user-specific page, SEO is not relevant and the page doesn’t need to be pre-rendered. The data is frequently updated, which requires request-time data fetching.
+
+**getStaticProps**
+
+
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:
