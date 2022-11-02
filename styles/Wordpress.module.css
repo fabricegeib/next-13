@@ -1,0 +1,19 @@
+.posts {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	grid-gap: 12px;
+	align-content: space-between;
+	justify-content: space-between;
+}
+
+.post {
+	background-color: #44475a;
+	color: #d8d8d7;
+	border-radius: 12px;
+	padding: 12px;
+	height: 180px;
+}
+
+.title {}
+
+.content {}

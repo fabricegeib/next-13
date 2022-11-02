@@ -3,7 +3,7 @@
 export default function Blog({ posts }) {
 	return (
 		<div>
-			<h1>Blog - getStaticProps</h1>
+			<h1>Blog - getStaticProps (SSG)</h1>
 			<ul>
 				{posts.map((post) => (
 					<li key={post.id}>
