@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import styles from '../styles/Sitemap.module.css'
 
 function Sitemap() {
@@ -5,13 +6,13 @@ function Sitemap() {
 		<div>
 			<h1>Sitemap</h1>
 			<ul>
-				<li><a href="/about" className={styles.link}>about</a></li>
-				{/* <li><a href="/blog" className={styles.link}>blog</a> (getStaticProps)</li>
-				<li><a href="/blog-ssr" className={styles.link}>blog-ssr</a> (getServerSideProps / SSR)</li> */}
-				<li><a href="/posts" className={styles.link}>posts</a> (getStaticProps) (SSG)</li>
-				<li><a href="/posts/1" className={styles.link}>posts/[id]</a> (getStaticPaths, getStaticProps)</li>
-				<li><a href="/getServerSideProps" className={styles.link}>getServerSideProps</a> (SSR)</li>
-				<li><a href="/sitemap" className={styles.link}>sitemap</a></li>
+				<li><Link href="/about" className={styles.link}>about</Link></li>
+				{/* <li><Link href="/blog" className={styles.link}>blog</Link> (getStaticProps)</li>
+				<li><Link href="/blog-ssr" className={styles.link}>blog-ssr</Link> (getServerSideProps / SSR)</li> */}
+				<li><Link href="/posts" className={styles.link}>posts</Link> (getStaticProps) (SSG)</li>
+				<li><Link href="/posts/1" className={styles.link}>posts/[id]</Link> (getStaticPaths, getStaticProps)</li>
+				<li><Link href="/getServerSideProps" className={styles.link}>getServerSideProps</Link> (SSR)</li>
+				<li><Link href="/sitemap" className={styles.link}>sitemap</Link></li>
 			</ul>
 		</div>
 	);

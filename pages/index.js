@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import Image from 'next/image'
+import Link from 'next/link'
 import styles from '../styles/Home.module.css'
 
 export default function Home() {
@@ -22,7 +23,7 @@ export default function Home() {
 				</p>
 
 				<div className=''>
-					<p className=""><a href='/sitemap'>Sitemap</a></p>
+					<p className=""><Link href='/sitemap'>Sitemap</Link></p>
 				</div>
 
 				<div className={styles.grid}>
