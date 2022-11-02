@@ -1,7 +1,8 @@
+import { loadPosts } from '../lib/load-wordpress-posts'
 import styles from '../styles/Wordpress.module.css'
 
 // posts will be populated at build time by getStaticProps()
-function Blog({ posts }) {
+function Wordpress({ posts }) {
 	return (
 		<div>
 			<h1>Wordpress</h1>
@@ -25,10 +26,9 @@ function Blog({ posts }) {
 // It won't be called on client-side, so you can even do
 // direct database queries.
 export async function getStaticProps() {
-	// Call an external API endpoint to get posts.
-	// You can use any data fetching library
-	const res = await fetch('https://366.fabricegeib.com/wp-json/wp/v2/posts/')
-	const posts = await res.json()
+	// Instead of fetching your `/api` route you can call the same
+	// function directly in `getStaticProps`
+	const posts = await loadPosts()
 
 	console.log(posts)
 
@@ -41,4 +41,4 @@ export async function getStaticProps() {
 	}
 }
 
-export default Blog
+export default Wordpress
