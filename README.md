@@ -90,6 +90,13 @@ You should use getStaticPaths if you’re statically pre-rendering pages that us
 
 If you export a function called getStaticProps (Static Site Generation) from a page, Next.js will pre-render this page at build time using the props returned by getStaticProps
 
+You should use getStaticProps if:
+
+- The data required to render the page is available at build time ahead of a user’s request
+- The data comes from a headless CMS
+- The page must be pre-rendered (for SEO) and be very fast — getStaticProps generates HTML and JSON files, both of which can be cached by a CDN for performance
+- The data can be publicly cached (not user-specific). This condition can be bypassed in certain specific situation by using a Middleware to rewrite the path.
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:
